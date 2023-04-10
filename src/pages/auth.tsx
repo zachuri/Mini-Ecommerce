@@ -6,7 +6,7 @@ import { ThemeSupa } from "@supabase/auth-ui-shared";
 import { useSession, useSupabaseClient } from "@supabase/auth-helpers-react";
 import Account from "~/components/account";
 
-const Home: NextPage = () => {
+const AuthPage: NextPage = () => {
   const session = useSession();
   const supabase = useSupabaseClient();
 
@@ -18,10 +18,20 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div>
-        <h1>Main Page</h1>
+        {!session ? (
+          <Auth
+            supabaseClient={supabase}
+            appearance={{ theme: ThemeSupa }}
+            theme="dark"
+          />
+        ) : (
+          <p>
+            <Account session={session} />
+          </p>
+        )}
       </div>
     </>
   );
 };
 
-export default Home;
+export default AuthPage;

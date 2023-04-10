@@ -9,9 +9,14 @@
     "start": "next start"
   },
   "dependencies": {
+    "@supabase/auth-helpers-nextjs": "^0.6.0",
+    "@supabase/auth-helpers-react": "^0.3.1",
+    "@supabase/auth-ui-react": "^0.3.5",
+    "@supabase/supabase-js": "^2.15.0",
     "next": "^13.2.4",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "supabase": "^1.50.0",
     "zod": "^3.21.4"
   },
   "devDependencies": {
