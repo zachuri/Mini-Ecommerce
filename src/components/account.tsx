@@ -51,9 +51,9 @@ export default function Account({ session }: { session: Session }) {
     website,
     avatar_url,
   }: {
-    username: string;
-    website: string;
-    avatar_url: string;
+    username?: string;
+    website?: string;
+    avatar_url?: string;
   }) {
     try {
       setLoading(true);
@@ -89,7 +89,8 @@ export default function Account({ session }: { session: Session }) {
           id="username"
           type="text"
           value={username || ""}
-          onChange={(e) => setUsername(e.target.value)}
+          // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+          onChange={(e: any) => setUsername(e.target.value)}
         />
       </div>
       <div>
@@ -98,14 +99,19 @@ export default function Account({ session }: { session: Session }) {
           id="website"
           type="website"
           value={website || ""}
-          onChange={(e) => setWebsite(e.target.value)}
+          // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+          onChange={(e: any) => setWebsite(e.target.value)}
         />
       </div>
 
       <div>
         <button
           className="button primary block"
-          onClick={() => updateProfile({ username, website, avatar_url })}
+          onClick={() => {
+            if (username && website && avatar_url) {
+              void updateProfile({ username, website, avatar_url });
+            }
+          }}
           disabled={loading}
         >
           {loading ? "Loading ..." : "Update"}
