@@ -12,16 +12,21 @@ const Navbar = () => {
     <>
       <div className="border border-black p-5 ">
         <div className="grid grid-cols-3">
-          <div className="flex items-center justify-center border">Website</div>
+          <div className="flex items-center justify-center border">
+            <Link href={"/"}>Website</Link>
+          </div>
           <div className="border"></div>
           <div className="flex items-center justify-center border">
             {!user ? (
-              <Link href={"/auth"}>Login</Link>
+              <Link href={"/auth"}>
+                <div className="rounded-xl border p-2">Login</div>
+              </Link>
             ) : (
-              <div className="flex-cols flex">
+              <div className="flex flex-col items-center justify-center">
                 <div>Hey, {user.email}</div>
                 <div>
                   <button
+                    className="rounded-xl border p-2"
                     onClick={() => {
                       void supabaseClient.auth.signOut();
                     }}
