@@ -23,6 +23,7 @@ const AuthPage: NextPage = () => {
             supabaseClient={supabase}
             appearance={{ theme: ThemeSupa }}
             theme="dark"
+            providers={["github", "apple"]}
           />
         ) : (
           <p>

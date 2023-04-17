@@ -1,14 +1,27 @@
+/* eslint-disable @typescript-eslint/restrict-plus-operands */
 import { type NextPage } from "next";
 import Head from "next/head";
 import Link from "next/link";
-import { Auth } from "@supabase/auth-ui-react";
-import { ThemeSupa } from "@supabase/auth-ui-shared";
-import { useSession, useSupabaseClient } from "@supabase/auth-helpers-react";
-import Account from "~/components/account";
+import { useSupabaseClient } from "@supabase/auth-helpers-react";
+import { useEffect, useState } from "react";
 
 const Home: NextPage = () => {
-  const session = useSession();
   const supabase = useSupabaseClient();
+
+  const [posts, setPosts] = useState<{ [x: string]: any }[]>();
+
+  useEffect(() => {
+    void fetchProfiles();
+  }, []);
+
+  const fetchProfiles = async () => {
+    const { data, error } = await supabase
+      .from("posts")
+      .select("*")
+      .order("id");
+    if (error) console.log("error", error);
+    else setPosts(data);
+  };
 
   return (
     <>
@@ -18,7 +31,14 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div>
+        <Link href={"/auth"}>Login</Link>
         <h1>Main Page</h1>
+        {posts?.map((post) => (
+          <>
+            <div>{post.description}</div>
+            <div>{post.description}</div>
+          </>
+        ))}
       </div>
     </>
   );

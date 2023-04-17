@@ -7,6 +7,7 @@ import {
 } from "@supabase/auth-helpers-react";
 
 import { type AppProps } from "next/app";
+import Navbar from "~/components/navbar";
 
 // const MyApp: AppType = ({ Component, pageProps }) => {
 //   return <Component {...pageProps} />;
@@ -26,6 +27,7 @@ function MyApp({
       supabaseClient={supabaseClient}
       initialSession={pageProps.initialSession}
     >
+      <Navbar />
       <Component {...pageProps} />
     </SessionContextProvider>
   );
