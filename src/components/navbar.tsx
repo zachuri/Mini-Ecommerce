@@ -15,7 +15,10 @@ const Navbar = () => {
           <div className="flex items-center justify-center border">
             <Link href={"/"}>Website</Link>
           </div>
-          <div className="border"></div>
+          <div className="flex items-center justify-center gap-2 border">
+            <Link href={"/"}>Main Page</Link>
+            <Link href={"/createArticle"}>Create Article</Link>
+          </div>
           <div className="flex items-center justify-center border">
             {!user ? (
               <Link href={"/auth"}>
