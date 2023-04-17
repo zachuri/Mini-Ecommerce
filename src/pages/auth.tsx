@@ -5,10 +5,12 @@ import { Auth } from "@supabase/auth-ui-react";
 import { ThemeSupa } from "@supabase/auth-ui-shared";
 import { useSession, useSupabaseClient } from "@supabase/auth-helpers-react";
 import Account from "~/components/account";
+import { useRouter } from "next/router";
 
 const AuthPage: NextPage = () => {
   const session = useSession();
   const supabase = useSupabaseClient();
+  const router = useRouter();
 
   return (
     <>
@@ -26,9 +28,10 @@ const AuthPage: NextPage = () => {
             providers={["github", "apple"]}
           />
         ) : (
-          <p>
+          // <>{router.push("/")};</>
+          <>
             <Account session={session} />
-          </p>
+          </>
         )}
       </div>
     </>
