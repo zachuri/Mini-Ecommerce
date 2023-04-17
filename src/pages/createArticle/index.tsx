@@ -41,13 +41,35 @@ const CreateArticle: NextPage = () => {
     content: "",
   };
 
-  const [articleData, setArticleData] = useState(initialState);
+  const [postData, setPostData] = useState(initialState);
 
   // Handle change any to make it any input type
   const handleChange = (e: any) => {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
-    setArticleData({ ...articleData, [e.target.name]: e.target.value });
-    console.log(articleData);
+    setPostData({ ...postData, [e.target.name]: e.target.value });
+    console.log(postData);
+  };
+
+  const createPost = async () => {
+    try {
+      const { data, error } = await supabaseClient
+        .from("user_posts")
+        .insert([
+          {
+            title: postData.title,
+            content: postData.content,
+            user_email: user?.email?.toLocaleLowerCase(),
+            user_id: user?.id,
+          },
+        ])
+        .single();
+      if (error) throw error;
+      setPostData(initialState);
+      void router.push("/");
+    } catch (error: any) {
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+      alert(error.message);
+    }
   };
 
   return (
@@ -61,15 +83,19 @@ const CreateArticle: NextPage = () => {
             placeholder="Title"
             onChange={handleChange}
           />
-          <h1 className="text-4xl">Description</h1>
+          <h1 className="text-4xl">Content</h1>
           <textarea
-            name="description"
+            name="content"
             className="rounded-xl border p-5"
-            placeholder="Description"
+            placeholder="Content"
             onChange={handleChange}
           />
           <p>Posting as {user?.email}</p>
-          <button className="rounded-xl border bg-blue-600 p-2 text-white">
+          <button
+            className="rounded-xl border bg-blue-600 p-2 text-white"
+            // eslint-disable-next-line @typescript-eslint/no-misused-promises
+            onClick={createPost}
+          >
             Create Post
           </button>
         </div>
