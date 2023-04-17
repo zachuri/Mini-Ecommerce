@@ -22,6 +22,9 @@ const UserPosts = () => {
       if (data != null) {
         setPosts(data);
       }
+      if (error) {
+        throw error;
+      }
     } catch (error: any) {
       // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
       alert(error.message);
