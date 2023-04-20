@@ -26,5 +26,5 @@ export async function middleware(req: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/createArticle"],
+  matcher: ["/createArticle", "/account"],
 };

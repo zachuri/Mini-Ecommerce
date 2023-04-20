@@ -5,9 +5,10 @@ import {
   useUser,
   useSupabaseClient,
   type Session,
+  useSession,
 } from "@supabase/auth-helpers-react";
 
-export default function Account({ session }: { session: Session }) {
+function AccountPage({ session }: { session: Session }) {
   const supabase = useSupabaseClient();
   const user = useUser();
   const [loading, setLoading] = useState(true);
@@ -128,4 +129,10 @@ export default function Account({ session }: { session: Session }) {
       </div>
     </div>
   );
+}
+
+export default function Account() {
+  const session = useSession();
+
+  return <>{session ? <AccountPage session={session} /> : "Please Sign In"}</>;
 }
