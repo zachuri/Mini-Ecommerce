@@ -9,13 +9,15 @@ import { useEffect } from "react";
 const AuthPage: NextPage = () => {
   const supabase = useSupabaseClient();
   const router = useRouter();
+  const callbackUrl = (router.query?.redirectedFrom as string) ?? "/";
 
   useEffect(() => {
     const checkSession = async () => {
       const { data } = await supabase.auth.getSession();
       if (data.session) {
         // void router.back();
-        void router.push("/");
+        void router.push(callbackUrl);
+        // void router.reload();
       }
     };
 
@@ -24,8 +26,8 @@ const AuthPage: NextPage = () => {
 
   supabase.auth.onAuthStateChange((event) => {
     if (event == "SIGNED_IN") {
-      // void router.back();
-      void router.push("/");
+      // void router.reload();
+      void router.push(callbackUrl);
     }
   });
 
