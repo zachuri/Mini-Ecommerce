@@ -32,9 +32,10 @@ const Navbar = () => {
                     className="rounded-xl border p-2"
                     onClick={() => {
                       void supabaseClient.auth.signOut();
+                      void router.push("/");
                     }}
                   >
-                    Sign Out{" "}
+                    Sign Out
                   </button>
                 </div>
               </div>
