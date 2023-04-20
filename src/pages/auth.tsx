@@ -23,7 +23,8 @@ const AuthPage: NextPage = () => {
 
   supabase.auth.onAuthStateChange((event) => {
     if (event == "SIGNED_IN") {
-      void router.back();
+      // void router.back();
+      void router.push("/");
     }
     if (event == "SIGNED_OUT") {
       void router.push("/");
