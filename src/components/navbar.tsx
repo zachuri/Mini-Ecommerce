@@ -33,9 +33,27 @@ const Navbar = () => {
             <Link href={"/"}>Website</Link>
           </div>
           <div className="flex items-center justify-center gap-2 border">
-            <Link href={"/"}>Main Page</Link>
-            <Link href={"/createArticle"}>Create Article</Link>
-            <Link href={"/account"}>Account</Link>
+            <button
+              onClick={() => {
+                void router.push("/");
+              }}
+            >
+              Main Page
+            </button>
+            <button
+              onClick={() => {
+                void router.push("/createArticle");
+              }}
+            >
+              Create Article
+            </button>
+            <button
+              onClick={() => {
+                void router.push("/account");
+              }}
+            >
+              Account
+            </button>
           </div>
           <div className="flex items-center justify-center border">
             {!user ? (
