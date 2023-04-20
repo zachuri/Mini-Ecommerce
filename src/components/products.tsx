@@ -44,6 +44,7 @@ const Products = () => {
                   <p>Description: {product.description}</p>
                   <p>Price: ${product.price}</p>
                   <p>Category: {product.category}</p>
+                  <p>Inventory: {product.inventory}</p>
                   <div className="relative h-[300px] md:h-[400px] md:w-[600px] xl:h-[500px] xl:w-[650px]">
                     <Image
                       src={product.image_url}
