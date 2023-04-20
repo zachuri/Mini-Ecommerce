@@ -41,13 +41,14 @@ const Products = () => {
                 <div className="rounded-xl border hover:border-black">
                   <p>Name: {product.name}</p>
                   <p>Description {product.description}</p>
-                  <p>Product url: {product.image_url}</p>
-                  <Image
-                    src={product.image_url}
-                    width={100}
-                    height={100}
-                    alt={"overlay"}
-                  />
+                  <div className="relative h-[300px] md:h-[400px] md:w-[600px] xl:h-[500px] xl:w-[650px]">
+                    <Image
+                      src={product.image_url}
+                      fill
+                      style={{ objectFit: "cover" }}
+                      alt={"overlay"}
+                    />
+                  </div>
                 </div>
               </div>
             </>
