@@ -14,7 +14,8 @@ const AuthPage: NextPage = () => {
     const checkSession = async () => {
       const { data } = await supabase.auth.getSession();
       if (data.session) {
-        void router.back();
+        // void router.back();
+        void router.push("/");
       }
     };
 
@@ -24,9 +25,6 @@ const AuthPage: NextPage = () => {
   supabase.auth.onAuthStateChange((event) => {
     if (event == "SIGNED_IN") {
       // void router.back();
-      void router.push("/");
-    }
-    if (event == "SIGNED_OUT") {
       void router.push("/");
     }
   });

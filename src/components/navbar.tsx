@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useUser, useSupabaseClient } from "@supabase/auth-helpers-react";
 import { useRouter } from "next/router";
 import Link from "next/link";
@@ -7,6 +7,23 @@ const Navbar = () => {
   const supabaseClient = useSupabaseClient();
   const user = useUser();
   const router = useRouter();
+
+  // useEffect(() => {
+  //   const checkSession = async () => {
+  //     const { data } = await supabaseClient.auth.getSession();
+  //     if (data.session) {
+  //       void router.back();
+  //     }
+  //   };
+
+  //   void checkSession();
+  // });
+
+  // supabaseClient.auth.onAuthStateChange((event) => {
+  //   if (event == "SIGNED_OUT") {
+  //     void router.push("/");
+  //   }
+  // });
 
   return (
     <>
