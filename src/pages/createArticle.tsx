@@ -8,7 +8,7 @@ import {
 import { type GetServerSidePropsContext } from "next";
 import { type ChangeEvent, useState } from "react";
 import { Auth } from "@supabase/auth-ui-react";
-import AuthPage from "../auth";
+import AuthPage from "./auth";
 
 // export const getServerSideProps = async (ctx: GetServerSidePropsContext) => {
 //   // Create authenticated Supabase Client
@@ -74,11 +74,7 @@ const CreateArticle: NextPage = () => {
     }
   };
 
-  return !user ? (
-    <>
-      <AuthPage />
-    </>
-  ) : (
+  return (
     <>
       <div className="flex items-center justify-center">
         <div className="flex flex-col justify-center">
