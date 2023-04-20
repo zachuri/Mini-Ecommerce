@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { useSupabaseClient, useUser } from "@supabase/auth-helpers-react";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
@@ -37,9 +38,11 @@ const UserPosts = () => {
         {posts?.map((post) => {
           return (
             <>
-              <div className="rounded-xl border hover:border-black">
-                <p>Title: {post.title}</p>
-                <p>Content {post.content}</p>
+              <div key={post.id}>
+                <div className="rounded-xl border hover:border-black">
+                  <p>Title: {post.title}</p>
+                  <p>Content {post.content}</p>
+                </div>
               </div>
             </>
           );
