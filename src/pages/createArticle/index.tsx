@@ -7,30 +7,32 @@ import {
 } from "@supabase/auth-helpers-nextjs";
 import { type GetServerSidePropsContext } from "next";
 import { type ChangeEvent, useState } from "react";
+import { Auth } from "@supabase/auth-ui-react";
+import AuthPage from "../auth";
 
-export const getServerSideProps = async (ctx: GetServerSidePropsContext) => {
-  // Create authenticated Supabase Client
-  const supabase = createServerSupabaseClient(ctx);
-  // Check if we have a session
-  const {
-    data: { session },
-  } = await supabase.auth.getSession();
+// export const getServerSideProps = async (ctx: GetServerSidePropsContext) => {
+//   // Create authenticated Supabase Client
+//   const supabase = createServerSupabaseClient(ctx);
+//   // Check if we have a session
+//   const {
+//     data: { session },
+//   } = await supabase.auth.getSession();
 
-  if (!session)
-    return {
-      redirect: {
-        destination: "/auth",
-        permanent: false,
-      },
-    };
+//   if (!session)
+//     return {
+//       redirect: {
+//         destination: "/auth",
+//         permanent: false,
+//       },
+//     };
 
-  return {
-    props: {
-      initialSession: session,
-      user: session.user,
-    },
-  };
-};
+//   return {
+//     props: {
+//       initialSession: session,
+//       user: session.user,
+//     },
+//   };
+// };
 
 const CreateArticle: NextPage = () => {
   const supabaseClient = useSupabaseClient();
@@ -72,7 +74,11 @@ const CreateArticle: NextPage = () => {
     }
   };
 
-  return (
+  return !user ? (
+    <>
+      <AuthPage />
+    </>
+  ) : (
     <>
       <div className="flex items-center justify-center">
         <div className="flex flex-col justify-center">
