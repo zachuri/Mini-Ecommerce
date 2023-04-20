@@ -16,7 +16,8 @@ const Products = () => {
       const { data, error } = await supabaseClient
         .from("products")
         .select("*")
-        .limit(10);
+        .limit(10)
+        .order("id", { ascending: true });
 
       if (error) throw error;
       console.log(data);
@@ -40,7 +41,9 @@ const Products = () => {
               <div key={product.id}>
                 <div className="rounded-xl border hover:border-black">
                   <p>Name: {product.name}</p>
-                  <p>Description {product.description}</p>
+                  <p>Description: {product.description}</p>
+                  <p>Price: ${product.price}</p>
+                  <p>Category: {product.category}</p>
                   <div className="relative h-[300px] md:h-[400px] md:w-[600px] xl:h-[500px] xl:w-[650px]">
                     <Image
                       src={product.image_url}
