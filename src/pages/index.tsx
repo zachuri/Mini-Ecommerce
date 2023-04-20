@@ -1,29 +1,10 @@
 /* eslint-disable @typescript-eslint/restrict-plus-operands */
 import { type NextPage } from "next";
 import Head from "next/head";
-import Link from "next/link";
-import { useSupabaseClient } from "@supabase/auth-helpers-react";
-import { useEffect, useState } from "react";
 import UserPosts from "~/components/user-posts";
+import Products from "~/components/products";
 
 const Home: NextPage = () => {
-  const supabase = useSupabaseClient();
-
-  const [posts, setPosts] = useState<{ [x: string]: any }[]>();
-
-  useEffect(() => {
-    void fetchProfiles();
-  }, []);
-
-  const fetchProfiles = async () => {
-    const { data, error } = await supabase
-      .from("posts")
-      .select("*")
-      .order("id");
-    if (error) console.log("error", error);
-    else setPosts(data);
-  };
-
   return (
     <>
       <Head>
@@ -34,16 +15,8 @@ const Home: NextPage = () => {
       <div className="flex flex-col items-center justify-center">
         <h1 className="text-4xl">Main Page</h1>
         <div className="flex flex-col gap-5">
-          {/* {posts?.map((post) => (
-            // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-            <div key={post.id}>
-              <div> Title: {post.id}</div>
-              <div> Title: {post.title}</div>
-              <div> Description: {post.description}</div>
-            </div>
-          ))} */}
-
-          <UserPosts />
+          {/* <UserPosts /> */}
+          <Products />
         </div>
       </div>
     </>
