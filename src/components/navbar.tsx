@@ -35,6 +35,7 @@ const Navbar = () => {
           <div className="flex items-center justify-center gap-2 border">
             <Link href={"/"}>Main Page</Link>
             <Link href={"/createArticle"}>Create Article</Link>
+            <Link href={"/account"}>Account</Link>
           </div>
           <div className="flex items-center justify-center border">
             {!user ? (
